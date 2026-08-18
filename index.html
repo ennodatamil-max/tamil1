@@ -122,7 +122,6 @@ h1{
 
 .surprise-btn-container{
     text-align:center;
-
     margin:40px 0;
 
     position:relative;
@@ -147,7 +146,6 @@ h1{
     font-size:16px;
 
     cursor:pointer;
-
     font-weight:bold;
 
     box-shadow:
@@ -191,7 +189,6 @@ h1{
     perspective:1000px;
 
     cursor:pointer;
-
     position:relative;
 }
 
@@ -227,7 +224,6 @@ h1{
     );
 
     color:white;
-
     font-weight:bold;
 
     box-shadow:
@@ -276,7 +272,6 @@ h1{
     padding:11px 24px;
 
     border:none;
-
     border-radius:25px;
 
     background:
@@ -309,35 +304,25 @@ h1{
    MUSIC BUTTON
 ========================= */
 
-.music-btn{
+.music-status{
     position:fixed;
 
-    top:15px;
     right:15px;
+    top:15px;
 
-    z-index:200;
+    z-index:150;
 
-    width:45px;
-    height:45px;
+    padding:9px 15px;
 
-    border:none;
+    border-radius:25px;
 
-    border-radius:50%;
-
-    background:rgba(255,255,255,0.35);
-
-    color:white;
-
-    font-size:20px;
-
-    cursor:pointer;
-
-    display:none;
+    background:rgba(0,0,0,0.35);
 
     backdrop-filter:blur(8px);
 
-    box-shadow:
-    0 5px 20px rgba(0,0,0,0.25);
+    font-size:13px;
+
+    display:none;
 }
 
 
@@ -371,33 +356,16 @@ h1{
 
 
 <!-- ================================================= -->
-<!-- 🎵 BACKGROUND SONG -->
+<!-- 🎵 MUSIC STATUS -->
 <!-- ================================================= -->
 
-<audio
-    id="bgMusic"
-    loop
-    preload="auto">
+<div
+class="music-status"
+id="musicStatus">
 
-    <!-- ⭐⭐⭐ PUT YOUR SONG LINK HERE ⭐⭐⭐ -->
+🎵 Playing...
 
-    <source
-        src="REPLACE YOUR LINK"
-        type="audio/mpeg">
-
-</audio>
-
-
-<!-- MUSIC BUTTON -->
-
-<button
-    class="music-btn"
-    id="musicBtn"
-    onclick="toggleMusic()">
-
-    🔊
-
-</button>
+</div>
 
 
 <!-- ================================================= -->
@@ -419,9 +387,13 @@ h1{
 <div class="cols">
 
 
+<!-- ================================================= -->
 <!-- 1 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="https://files.catbox.moe/8whteu.mp3">
 
 <div class="container">
 
@@ -442,9 +414,13 @@ Avaloda manasu romba azhagu ❤️
 </div>
 
 
+<!-- ================================================= -->
 <!-- 2 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 2 LINK">
 
 <div class="container">
 
@@ -465,9 +441,13 @@ Enna pathi eppovume yosippava 🫶
 </div>
 
 
+<!-- ================================================= -->
 <!-- 3 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 3 LINK">
 
 <div class="container">
 
@@ -488,9 +468,13 @@ Avala paathaale pidikkura maari iruppava 🥰
 </div>
 
 
+<!-- ================================================= -->
 <!-- 4 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 4 LINK">
 
 <div class="container">
 
@@ -511,9 +495,13 @@ Manasu romba soft-ah iruppava 🤍
 </div>
 
 
+<!-- ================================================= -->
 <!-- 5 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 5 LINK">
 
 <div class="container">
 
@@ -534,9 +522,13 @@ Romba pure-ah iruppava 🌸
 </div>
 
 
+<!-- ================================================= -->
 <!-- 6 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 6 LINK">
 
 <div class="container">
 
@@ -557,9 +549,13 @@ Anba niraya kuduppava ❤️
 </div>
 
 
+<!-- ================================================= -->
 <!-- 7 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 7 LINK">
 
 <div class="container">
 
@@ -580,9 +576,13 @@ Chinna vishayathulayum care kaattupava 🫶
 </div>
 
 
+<!-- ================================================= -->
 <!-- 8 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 8 LINK">
 
 <div class="container">
 
@@ -603,9 +603,13 @@ Anboda serthu mariyadhaiyum kuduppava 🤍
 </div>
 
 
+<!-- ================================================= -->
 <!-- 9 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 9 LINK">
 
 <div class="container">
 
@@ -626,9 +630,13 @@ Manasara paasam kaattupava 💕
 </div>
 
 
+<!-- ================================================= -->
 <!-- 10 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 10 LINK">
 
 <div class="container">
 
@@ -649,9 +657,13 @@ Avaloda pechum gunamum sweet-ah irukkum 🌷
 </div>
 
 
+<!-- ================================================= -->
 <!-- 11 -->
+<!-- ================================================= -->
 
-<div class="col">
+<div
+class="col"
+data-audio="REPLACE SONG 11 LINK">
 
 <div class="container">
 
@@ -679,7 +691,8 @@ Avaloda place-a yaaralayum fill panna mudiyadhu ❤️
 <!-- 🎉 SURPRISE BUTTON -->
 <!-- ================================================= -->
 
-<div class="surprise-btn-container">
+<div
+class="surprise-btn-container">
 
 <button
 class="surprise-btn"
@@ -726,7 +739,6 @@ Click 💗 Me
 
 </button>
 
-
 </div>
 
 </div>
@@ -738,97 +750,130 @@ Click 💗 Me
 
 
 /* ================================================= */
-/* 🎵 BACKGROUND MUSIC */
+/* 🎵 CARD MUSIC */
 /* ================================================= */
 
-const bgMusic =
-document.getElementById(
-    "bgMusic"
-);
-
-const musicBtn =
-document.getElementById(
-    "musicBtn"
-);
+let currentAudio = null;
 
 
 /*
-    SONG STARTS AFTER
-    USER CLICKS ANY CARD.
+=====================================================
+IMPORTANT:
+
+Each card has:
+
+data-audio="REPLACE SONG X LINK"
+
+Replace only that part with your DIRECT MP3 link.
+
+Example:
+
+data-audio="https://example.com/song.mp3"
+=====================================================
 */
 
-
-function startMusic(){
-
-    bgMusic.volume = 0.5;
-
-    bgMusic.play()
-    .then(()=>{
-
-        musicBtn.style.display =
-        "block";
-
-        musicBtn.innerText =
-        "🔊";
-
-    })
-    .catch((error)=>{
-
-        console.log(
-            "Music error:",
-            error
-        );
-
-    });
-
-}
-
-
-/* ================================================= */
-/* 🖱️ CARD CLICK → MUSIC */
-/* ================================================= */
 
 document
 .querySelectorAll(".col")
 .forEach(card=>{
 
+    const audioLink =
+    card.dataset.audio;
+
+
+    const audio =
+    new Audio(audioLink);
+
+
+    audio.loop = true;
+
+
     card.addEventListener(
         "click",
         function(){
 
-            startMusic();
+            /*
+            Stop previous song
+            */
+
+            if(
+                currentAudio &&
+                currentAudio !== audio
+            ){
+
+                currentAudio.pause();
+
+                currentAudio.currentTime = 0;
+
+            }
+
+
+            /*
+            If same song is already playing,
+            pause it.
+            */
+
+            if(
+                currentAudio === audio &&
+                !audio.paused
+            ){
+
+                audio.pause();
+
+                document
+                .getElementById(
+                    "musicStatus"
+                )
+                .style.display =
+                "none";
+
+                return;
+
+            }
+
+
+            /*
+            Start selected card song
+            */
+
+            audio.currentTime = 0;
+
+            audio.volume = 0.5;
+
+
+            audio.play()
+            .then(()=>{
+
+                currentAudio = audio;
+
+
+                document
+                .getElementById(
+                    "musicStatus"
+                )
+                .style.display =
+                "block";
+
+            })
+            .catch(error=>{
+
+                console.log(
+                    "Song could not play:",
+                    error
+                );
+
+                alert(
+                    "Song play aagala 😕\n\n" +
+                    "Please check your MP3 link."
+                );
+
+            });
 
         }
+
     );
 
 });
-
-
-/* ================================================= */
-/* 🎵 MUSIC ON / OFF */
-/* ================================================= */
-
-function toggleMusic(){
-
-    if(bgMusic.paused){
-
-        bgMusic.play();
-
-        musicBtn.innerText =
-        "🔊";
-
-    }
-
-    else{
-
-        bgMusic.pause();
-
-        musicBtn.innerText =
-        "🔇";
-
-    }
-
-}
 
 
 /* ================================================= */
@@ -854,6 +899,7 @@ function resize(){
 
 }
 
+
 resize();
 
 
@@ -871,7 +917,7 @@ function createHeart(){
     return{
 
         x:
-        Math.random()*
+        Math.random() *
         canvas.width,
 
         y:-20,
@@ -916,6 +962,7 @@ function drawHeart(
         y
     );
 
+
     ctx.bezierCurveTo(
         x,
         y-s/2,
@@ -924,6 +971,7 @@ function drawHeart(
         x-s,
         y
     );
+
 
     ctx.bezierCurveTo(
         x-s,
@@ -934,6 +982,7 @@ function drawHeart(
         y+s*1.2
     );
 
+
     ctx.bezierCurveTo(
         x,
         y+s,
@@ -943,6 +992,7 @@ function drawHeart(
         y
     );
 
+
     ctx.bezierCurveTo(
         x+s,
         y-s/2,
@@ -951,6 +1001,7 @@ function drawHeart(
         x,
         y
     );
+
 
     ctx.fillStyle =
     "rgba(255,105,180,0.7)";
@@ -1058,6 +1109,7 @@ function typeEffect(){
         .innerHTML +=
         message.charAt(i);
 
+
         i++;
 
 
@@ -1093,15 +1145,18 @@ function showWish(){
         "cardPopup"
     );
 
+
     const card =
     document.getElementById(
         "surpriseCard"
     );
 
+
     const text =
     document.getElementById(
         "typingText"
     );
+
 
     const loveBtn =
     document.getElementById(
