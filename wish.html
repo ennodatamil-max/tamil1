@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wishing Cards ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:linear-gradient(135deg,#ffd1dc,#ffc0cb,#ffb6c1);
+    min-height:100vh;
+    overflow-y:auto;
+    color:white;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+h1{
+    text-align:center;
+    margin:2rem 0;
+    position:relative;
+    z-index:2;
+}
+
+.cols{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+}
+
+.col{
+    width:250px;
+    margin:1rem;
+    cursor:pointer;
+}
+
+.container{
+    transform-style:preserve-3d;
+    perspective:1000px;
+    position:relative;
+}
+
+.front,
+.back{
+    height:250px;
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    transition:0.7s;
+    backface-visibility:hidden;
+
+    color:#fff;
+    font-weight:bold;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.45),
+    0 10px 20px rgba(255,105,180,0.3);
+}
+
+.front{
+    background-size:cover;
+    background-position:center;
+}
+
+.back{
+    background:#596a72;
+    position:absolute;
+    top:0;
+    width:100%;
+    transform:rotateY(180deg);
+}
+
+.container:hover .front{
+    transform:rotateY(-180deg);
+}
+
+.container:hover .back{
+    transform:rotateY(0deg);
+}
+
+
+/* =========================
+   SURPRISE BUTTON
+========================= */
+
+.surprise-btn-container{
+    text-align:center;
+    margin:40px 0;
+    position:relative;
+    z-index:2;
+}
+
+.surprise-btn{
+    padding:13px 28px;
+    border:none;
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #ff4d6d,
+        #ff85a2
+    );
+
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+
+    box-shadow:
+    0 8px 20px rgba(255,77,109,0.4);
+
+    transition:0.3s;
+}
+
+.surprise-btn:hover{
+    transform:scale(1.08);
+}
+
+
+/* =========================
+   POPUP
+========================= */
+
+.card-popup{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,0.8);
+
+    z-index:100;
+}
+
+.surprise-card{
+    width:280px;
+    height:380px;
+
+    perspective:1000px;
+    cursor:pointer;
+    position:relative;
+}
+
+.card-front,
+.card-back{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    backface-visibility:hidden;
+
+    transition:transform 0.8s;
+
+    padding:20px;
+
+    text-align:center;
+}
+
+.card-front{
+    background:
+    linear-gradient(
+        45deg,
+        #ff85a2,
+        #ff4d6d
+    );
+
+    color:white;
+    font-weight:bold;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.4);
+}
+
+.card-back{
+    background:white;
+
+    color:#ff4d6d;
+
+    transform:rotateY(180deg);
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.4);
+
+    flex-direction:column;
+
+    overflow-y:auto;
+}
+
+.surprise-card.open .card-front{
+    transform:rotateY(180deg);
+}
+
+.surprise-card.open .card-back{
+    transform:rotateY(360deg);
+}
+
+
+/* =========================
+   CLICK ME BUTTON
+========================= */
+
+.love-btn{
+    display:none;
+
+    margin-top:18px;
+
+    padding:11px 24px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        45deg,
+        #ff4d6d,
+        #ff85a2
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 6px 18px rgba(255,77,109,0.4);
+
+    transition:0.3s;
+}
+
+.love-btn:hover{
+    transform:scale(1.08);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .col{
+        width:220px;
+    }
+
+    .front,
+    .back{
+        height:220px;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- ❤️ HEART ANIMATION -->
+<!-- ================================================= -->
+
+<canvas id="heartCanvas"></canvas>
+
+
+<h1>Wishing Cards ❤️</h1>
+
+
+<!-- ================================================= -->
+<!-- 🖼️ PHOTO CARDS -->
+<!-- ================================================= -->
+
+<div class="cols">
+
+
+<!-- 1 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/2jtPLMgx/c8901b78-b82c-4025-a95f-88552ef673af.jpg')">
+</div>
+
+<div class="back">
+B – Beautiful – Avaloda manasu romba azhagu ❤️
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/k5wHJpxk/1bd510c1-2b25-4ffe-8660-65a06fd1a6a2.jpg')">
+</div>
+
+<div class="back">
+T – Thoughtful – Enna pathi eppovume yosippava 🫶
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/LXb0fgQT/92d83edf-2be1-4938-beb5-bfc46dac770f.jpg')">
+</div>
+
+<div class="back">
+A – Adorable – Avala paathaale pidikkura maari iruppava 🥰
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/13SP4bNk/adbde42f-5c7b-4409-a572-1ef33863bc0e.jpg')">
+</div>
+
+<div class="back">
+M – Merciful – Manasu romba soft-ah iruppava 🤍
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/N0fckTDS/240e5342-5c27-4146-a9c6-770c92b1b0c9.jpg')">
+</div>
+
+<div class="back">
+I – Innocent – Romba pure-ah iruppava 🌸
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/RFWxjBjn/5b1e5856-c3ff-4a32-a46a-d3a6bd9d80c6.jpg')">
+</div>
+
+<div class="back">
+L – Loving – Anba niraya kuduppava ❤️
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/K8cZPKCf/7fc4e7e8-32ca-461c-8a52-62ce3500d9c2.jpg')">
+</div>
+
+<div class="back">
+A – Affectionate – Chinna vishayathulayum care kaattupava 🫶
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 8 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/T3P6yzWn/bf813858-e244-4519-b4b2-2f4372329dba.jpg')">
+</div>
+
+<div class="back">
+R – Respectful – Anboda serthu mariyadhaiyum kuduppava 🤍
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 9 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/j5H93c7J/9911c4d1-5c9e-45b8-9c30-bb9a8db684c9.jpg')">
+</div>
+
+<div class="back">
+A – Adoring – Manasara paasam kaattupava 💕
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 10 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/rwzp60gR/ee9aa658-c634-4c00-87a7-8cba2f29603f.jpg')">
+</div>
+
+<div class="back">
+S – Sweet – Avaloda pechum gunamum sweet-ah irukkum 🌷
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 11 -->
+
+<div class="col" data-audio="CHANGE HERE">
+
+<div class="container">
+
+<div
+class="front"
+style="background-image:url('https://i.postimg.cc/J7Q54Zpm/b8a42f7d-4a0e-4d3d-bb6d-7ba442c256df.jpg')">
+</div>
+
+<div class="back">
+I – Irreplaceable – Avaloda place-a yaaralayum fill panna mudiyadhu ❤️
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- 🎉 SURPRISE BUTTON -->
+<!-- ================================================= -->
+
+<div class="surprise-btn-container">
+
+<button
+class="surprise-btn"
+onclick="showWish()">
+
+Click for Surprise 🎉
+
+</button>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- 💌 SURPRISE POPUP -->
+<!-- ================================================= -->
+
+<div
+class="card-popup"
+id="cardPopup">
+
+<div
+class="surprise-card"
+id="surpriseCard">
+
+
+<div class="card-front">
+
+💖 Click to Open 💖
+
+</div>
+
+
+<div class="card-back">
+
+<p id="typingText"></p>
+
+
+<button
+class="love-btn"
+id="loveBtn"
+onclick="loveClick(event)">
+
+Click 💗 Me
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+/* ================================================= */
+/* ❤️ HEART ANIMATION */
+/* ================================================= */
+
+const canvas =
+document.getElementById("heartCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+
+function resize(){
+
+    canvas.width =
+    window.innerWidth;
+
+    canvas.height =
+    window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+
+const hearts=[];
+
+
+function createHeart(){
+
+    return{
+
+        x:
+        Math.random()*canvas.width,
+
+        y:-20,
+
+        size:
+        Math.random()*12+8,
+
+        speed:
+        Math.random()*2+1,
+
+        drift:
+        Math.random()*1-0.5
+
+    };
+
+}
+
+
+for(let i=0;i<50;i++){
+
+    hearts.push(
+        createHeart()
+    );
+
+}
+
+
+function drawHeart(x,y,s){
+
+    ctx.beginPath();
+
+    ctx.moveTo(x,y);
+
+    ctx.bezierCurveTo(
+        x,
+        y-s/2,
+        x-s,
+        y-s/2,
+        x-s,
+        y
+    );
+
+    ctx.bezierCurveTo(
+        x-s,
+        y+s/2,
+        x,
+        y+s,
+        x,
+        y+s*1.2
+    );
+
+    ctx.bezierCurveTo(
+        x,
+        y+s,
+        x+s,
+        y+s/2,
+        x+s,
+        y
+    );
+
+    ctx.bezierCurveTo(
+        x+s,
+        y-s/2,
+        x,
+        y-s/2,
+        x,
+        y
+    );
+
+    ctx.fillStyle=
+    "rgba(255,105,180,0.7)";
+
+    ctx.fill();
+
+}
+
+
+function animate(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    for(let i=0;i<hearts.length;i++){
+
+        let h=hearts[i];
+
+        drawHeart(
+            h.x,
+            h.y,
+            h.size
+        );
+
+        h.y+=h.speed;
+
+        h.x+=h.drift;
+
+
+        if(h.y>canvas.height){
+
+            hearts[i]=
+            createHeart();
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+animate();
+
+
+
+/* ================================================= */
+/* 🎵 CARD MUSIC */
+/* ================================================= */
+
+let currentAudio=null;
+
+let unlocked=false;
+
+
+document.body.addEventListener(
+    "click",
+    ()=>{
+        unlocked=true;
+    },
+    {once:true}
+);
+
+
+document
+.querySelectorAll(".col")
+.forEach(col=>{
+
+    const card=
+    col.querySelector(".container");
+
+    const audio=
+    new Audio(col.dataset.audio);
+
+    audio.loop=true;
+
+
+    card.addEventListener(
+        "mouseenter",
+        ()=>{
+
+            if(!unlocked) return;
+
+
+            if(currentAudio){
+
+                currentAudio.pause();
+
+                currentAudio.currentTime=0;
+
+            }
+
+
+            currentAudio=audio;
+
+            audio.currentTime=0;
+
+            audio.play().catch(
+                ()=>{}
+            );
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        ()=>{
+
+            audio.pause();
+
+            audio.currentTime=0;
+
+        }
+    );
+
+});
+
+
+
+/* ================================================= */
+/* 💌 MESSAGE */
+/* ================================================= */
+
+const message=
+`Happy birthday Ennoda tamil eh 🫂💎💗🤌🏻
+
+Un day romba special-aa irukanum,
+full-aa happiness, smiles,
+and lovely moments-oda niraiyirukanum.
+
+Nee eppovume ippadiye sweet-aa,
+strong-aa, happy-aa irukanum.
+
+Un dreams ellam nijamaaganum.
+
+Stay blessed and keep smiling always! ✨🌸`;
+
+
+let i=0;
+
+
+
+/* ================================================= */
+/* ⌨️ TYPING EFFECT */
+/* ================================================= */
+
+function typeEffect(){
+
+    if(i < message.length){
+
+        document
+        .getElementById("typingText")
+        .innerHTML +=
+        message.charAt(i);
+
+        i++;
+
+        setTimeout(
+            typeEffect,
+            40
+        );
+
+    }
+
+    else{
+
+        document
+        .getElementById("loveBtn")
+        .style.display=
+        "block";
+
+    }
+
+}
+
+
+
+/* ================================================= */
+/* 🎉 SHOW SURPRISE */
+/* ================================================= */
+
+function showWish(){
+
+    const popup=
+    document.getElementById(
+        "cardPopup"
+    );
+
+    const card=
+    document.getElementById(
+        "surpriseCard"
+    );
+
+    const text=
+    document.getElementById(
+        "typingText"
+    );
+
+    const loveBtn=
+    document.getElementById(
+        "loveBtn"
+    );
+
+
+    popup.style.display="flex";
+
+    card.classList.remove(
+        "open"
+    );
+
+    text.innerHTML="";
+
+    loveBtn.style.display=
+    "none";
+
+    i=0;
+
+}
+
+
+
+/* ================================================= */
+/* 💖 OPEN SURPRISE CARD */
+/* ================================================= */
+
+document
+.getElementById("surpriseCard")
+.addEventListener(
+    "click",
+    function(){
+
+        this.classList.add(
+            "open"
+        );
+
+
+        if(i===0){
+
+            setTimeout(
+                typeEffect,
+                500
+            );
+
+        }
+
+    }
+);
+
+
+
+/* ================================================= */
+/* 💗 CLICK ME → ANOTHER HTML PAGE */
+/* ================================================= */
+
+function loveClick(e){
+
+    e.stopPropagation();
+
+    window.location.href =
+    "bala.html";
+
+}
+
+
+
+/* ================================================= */
+/* ❌ CLOSE POPUP */
+/* ================================================= */
+
+document
+.getElementById("cardPopup")
+.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            e.target.id===
+            "cardPopup"
+        ){
+
+            document
+            .getElementById(
+                "cardPopup"
+            )
+            .style.display=
+            "none";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
